@@ -4,18 +4,22 @@
 
 OrthoMCL is an algorithm developed by L. Li, C. Stoeckert, and D. Ross specifically for identifying ortholog clusters for eukaryotes. Grouping orthologous genes allows us to infer similar functions across-species and make claims regarding conservation. OrthoMCL aims to identitfy 'recent' paralogs and orthologs via an all-vs-all BLASTP (i.e. BLASTP each proteome within and against each other). These homologs are then converted into a network-like graph where genes are nodes and edges are weighted by normalized BLAST results. MCL (see next section) is then applied to this graph. MCL offers the benefit of "evaluat[ing] the global pattern of sequence similarities among provisionally grouped sequences during clustering". OrthoMCL offered advantages over tools at the time such as INPARANOID (only does pairwise species comparison) and COG (which can be fooled by multidomain proteins as it considers local similarity over global similarity). 
 
-<div style="text-align:center">
-	<div>
+<div>
+	<p align="center">
 		<img src="https://genome.cshlp.org/content/13/9/2178/F1.large.jpg" alt="omcl-flowchart" width="250"/>
-	</div>
-	<i>OrthoMCL pipeline, excerpt from Li et al., (2003)</i>
+	</p>
+	<p align="center">
+		<i>OrthoMCL pipeline, excerpt from Li et al., (2003)</i>
+	</p>
 </div>
 
-<div style="text-align:center">
-	<div>
+<div>
+	<p >
 		<img src="https://genome.cshlp.org/content/13/9/2178/F2.large.jpg" alt="omcl-flowchart" width="250"/>
-	</div>
-	<i>Creating a similairty matrix from BLAST results, excerpt from Li et al., (2003)</i>
+	</p>
+	<p align="center">
+		<i>Creating a similairty matrix from BLAST results, excerpt from Li et al., (2003)</i>
+	</p>
 </div>
 
 
