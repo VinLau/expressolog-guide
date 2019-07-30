@@ -14,7 +14,7 @@ OrthoMCL is an algorithm developed by L. Li, C. Stoeckert, and D. Ross specifica
 </div>
 
 <div>
-	<p >
+	<p align="center">
 		<img src="https://genome.cshlp.org/content/13/9/2178/F2.large.jpg" alt="omcl-flowchart" width="250"/>
 	</p>
 	<p align="center">
