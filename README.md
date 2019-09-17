@@ -33,8 +33,8 @@ TNSTILIVIKGSKYMWYELLSICM*
 
 - Expression data for the above species across similar tissues (see below for example) - ideally in CSV/TSV format:
 
-<center>
-
+<center>	
+	
 | Mouse | Heart | Epidermis | Lungs |
 |-------|-------|-----------|-------|
 | GeneA | 34    | 21        | 88    |
@@ -136,12 +136,12 @@ As this protocol is based on R. Patel's 2012 Expressolog paper which used an old
 
 8. Your output should come in a folder with the MON_DD, with a file named ```all_orthomcl.out```. It should look something like this (note how the genes below feature rice, tomato and Arabidopsis - multi species clusters are not always the case):
 
-	```
-	ORTHOMCL2860(5 genes,3 taxa):	 AT1G14620.1(TAIR10_pep_20101214_updated) AT1G14620.2(TAIR10_pep_20101214_updated) Os06t0300600-01(IRGSP-1.0_protein_2019-06-26) Solyc04g009140.3.1(ITAG3.2_proteins) Solyc09g075370.3.1(ITAG3.2_proteins)
+```
+ORTHOMCL2860(5 genes,3 taxa):	 AT1G14620.1(TAIR10_pep_20101214_updated) AT1G14620.2(TAIR10_pep_20101214_updated) Os06t0300600-01(IRGSP-1.0_protein_2019-06-26) Solyc04g009140.3.1(ITAG3.2_proteins) Solyc09g075370.3.1(ITAG3.2_proteins)
 ORTHOMCL2861(5 genes,3 taxa):	 AT1G14610.1(TAIR10_pep_20101214_updated) Os03t0335600-01(IRGSP-1.0_protein_2019-06-26) Os03t0694900-01(IRGSP-1.0_protein_2019-06-26) Os10t0506200-00(IRGSP-1.0_protein_2019-06-26) Solyc09g007540.3.1(ITAG3.2_proteins)
 ORTHOMCL2862(5 genes,3 taxa):	 AT1G14590.1(TAIR10_pep_20101214_updated) AT2G02061.1(TAIR10_pep_20101214_updated) Os02t0686300-01(IRGSP-1.0_protein_2019-06-26) Os04t0585400-01(IRGSP-1.0_protein_2019-06-26) Solyc02g021230.3.1(ITAG3.2_proteins)
 ORTHOMCL2863(5 genes,3 taxa):	 AT1G14560.1(TAIR10_pep_20101214_updated) Os01t0571000-01(IRGSP-1.0_protein_2019-06-26) Os01t0571000-02(IRGSP-1.0_protein_2019-06-26) Os01t0708900-01(IRGSP-1.0_protein_2019-06-26) Solyc08g062860.3.1(ITAG3.2_proteins)
-	```
+```
 
 9. See the oMCL README file for instructions on supplementary files such as the blast results.
 
@@ -153,7 +153,7 @@ The R/python scripts in this guide are created by me but are fairly simple to im
 
 1. **Correlational analysis** ```createCorrMatricesFromClusters.R``` This script will take two TSV files of expression data and ultimately produce large file of correlation matrices for every oMCL cluster. Again the expression data is assumed to look like in the introduction. Look inside the file for ```#NB###``` on how to modify the attached script to your own data. The output should look something like this: 
 
-	```
+```
 "","AT2G37360","AT2G39350","AT3G53510","AT3G55090","AT5G13580","Solyc04g010210.1.1","Solyc05g054890.3.1"
 "AT2G37360",1,0.264047400766428,0.995396876862977,0.99010267022379,0.977338461197677,-0.178433131857082,0.00901557355050582
 "AT2G39350",0.264047400766428,1,0.231429762541492,0.244539972049951,0.31611999047776,0.401122801069329,0.429681200443696
@@ -168,10 +168,8 @@ The R/python scripts in this guide are created by me but are fairly simple to im
 "Solyc10g083710.2.1",-0.138660357360087,-0.803856377519053,1,-0.626837119167377,-0.0967084650989069
 "Solyc10g083720.2.1",0.389180632719418,0.691874466641581,-0.626837119167377,1,0.392184594799019
 "Solyc11g007690.2.1",0.53833851995545,0.140791166994614,-0.0967084650989069,0.392184594799019,1
-	```
-	
-	This small excerpt has two correlation matrices for which the diagonal is the '1's across.
-	
+```
+		
 2. **Parse correlation matrices** We then need to clean up the above csv file by using the ```makeTSVFromCorrMtcs.py``` file. This file will take the correlation matrices and can find the best matching (best expressolog) in each gene in each cluster and produce a TSV file. Just note the flags you need to set before running this python3 file. 
 
 	| Flag | Explaination |
@@ -182,7 +180,7 @@ The R/python scripts in this guide are created by me but are fairly simple to im
 	| q | Name of your input file |
 
 	```
-python3 makeTSVFromCorrMtcs.py -f "myCorrMatrices.csv" -m "yes" -q "out.tsv"
+	python3 makeTSVFromCorrMtcs.py -f "myCorrMatrices.csv" -m "yes" -q "out.tsv"
 	```
 
 
@@ -190,8 +188,8 @@ python3 makeTSVFromCorrMtcs.py -f "myCorrMatrices.csv" -m "yes" -q "out.tsv"
 
 4. **Sanity Check** Now that you have your final TSV file of expressologs, we should perform a manual-visual check on our expressologs. That is, compare our best matching expressologs (highest correlation coefficient) truly do correlate better than other ortholgs. We can visualize this as a Gene A expression versus Gene A' expression scatterplot to another Gene A versus Gene A'' scatterplot. It goes back to the original expression data to map the plots so it's an 'honest' test.
 
-<center>
-![expressolog check image](./expressolog-check.png)
-</center>
+<p align="center">
+	<img src="expressolog-check.png" alt="expressolog-check"/>
+</p>
 
 Note how the top two expressologs (Solyc04g074500.3.1 and Solyc08g077780.3.1) do not necessarily have the best sequence similarities across our conditions. Again, check the ```#NB###``` tag to modify the script to your own data.
